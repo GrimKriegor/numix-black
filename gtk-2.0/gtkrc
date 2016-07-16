@@ -1,7 +1,6 @@
 # Numix GTK Theme
-#00ae3d d64937
 
-gtk-color-scheme = "bg_color:#dedede\nfg_color:#555555\nbase_color:#f9f9f9\ntext_color:#333333\nselected_bg_color:#00ae3d\nselected_fg_color:#f9f9f9\ntooltip_bg_color:#000000\ntooltip_fg_color:#dedede\ntitlebar_bg_color:#000000\ntitlebar_fg_color:#dcdcdc\nmenubar_bg_color:#000000\nmenubar_fg_color:#dcdcdc\ntoolbar_bg_color:#dedede\ntoolbar_fg_color:#555555\nmenu_bg_color:#000000\nmenu_fg_color:#dcdcdc\npanel_bg_color:#000000\npanel_fg_color:#dcdcdc\nlink_color:#fc6f5d"
+gtk-color-scheme = "bg_color:#dbdbdb\nfg_color:#555555\nbase_color:#ffffff\ntext_color:#333333\nselected_bg_color:#00ae3d\nselected_fg_color:#ffffff\ntooltip_bg_color:#000000\ntooltip_fg_color:#dbdbdb\ntitlebar_bg_color:#000000\ntitlebar_fg_color:#dddddd\nmenubar_bg_color:#000000\nmenubar_fg_color:#dddddd\ntoolbar_bg_color:#dbdbdb\ntoolbar_fg_color:#555555\nmenu_bg_color:#000000\nmenu_fg_color:#dddddd\npanel_bg_color:#000000\npanel_fg_color:#dddddd\nlink_color:#f06860"
 
 # Default Style
 
@@ -471,12 +470,17 @@ class "PanelToplevel*" style "murrine-panel"
 widget_class "*PanelToplevel*" style "murrine-panel"
 widget_class "*notif*" style "murrine-panel"
 widget_class "*Notif*" style "murrine-panel"
-widget_class "*Tray*" style "murrine-panel" 
+widget_class "*Tray*" style "murrine-panel"
 widget_class "*tray*" style "murrine-panel"
 widget_class "*computertemp*" style "murrine-panel"
 widget_class "*Applet*Tomboy*" style "murrine-panel"
 widget_class "*Applet*Netstatus*" style "murrine-panel"
 widget "*gdm-user-switch-menubar*" style "murrine-panel"
+
+# LXPanel (code based on Lubuntu-default theme's gtkrc file)
+widget "*.tclock.*" style "murrine-panel"
+widget "*.taskbar.*" style "murrine-panel"
+widget_class "*GtkBgbox*" style "murrine-panel"
 
 style "bold-panel-item" {
 	font_name = "Bold"
@@ -495,6 +499,7 @@ widget "*gimmie*" style "bold-panel-item"
 # XFCE Styles
 
 style "workspace-switcher" = "murrine-panel" {
+	bg[ACTIVE] = @selected_bg_color
 	bg[SELECTED] = @selected_bg_color
 }
 
@@ -523,7 +528,7 @@ style "xfdesktop-icon-view" {
 	fg[ACTIVE] = @selected_fg_color
 
 	engine "murrine" {
-		textstyle = 5
+		textstyle = 0
 		text_shade = 0.05
 	}
 }
@@ -576,7 +581,7 @@ style "xfsm-logout-button" {
 	}
 }
 
-widget "*WnckPager*" style "workspace-switcher"
+widget "*Pager*" style "workspace-switcher"
 
 widget "*Xfce*Panel*" style "murrine-panel"
 class "*Xfce*Panel*" style "murrine-panel"
@@ -593,6 +598,30 @@ style "sidepane" {
 widget_class "*ThunarShortcutsView*" style "sidepane"
 widget_class "*ThunarTreeView*" style "sidepane"
 widget_class "*ThunarLocationEntry*" style "murrine-entry"
+
+style "whiskermenu" {
+	bg[NORMAL] = @menu_bg_color
+	bg[ACTIVE] = mix (0.21, @menubar_fg_color, @menubar_bg_color)
+	bg[PRELIGHT] = @selected_bg_color
+
+	fg[NORMAL] = @menu_fg_color
+	fg[ACTIVE] = @menu_fg_color
+	fg[PRELIGHT] = @menu_fg_color
+}
+
+style "whiskermenu-scrollbar" = "murrine-scrollbar" {
+	bg[NORMAL] = mix (0.21, @fg_color, @bg_color)
+	bg[PRELIGHT] = mix (0.31, @fg_color, @bg_color)
+	bg[ACTIVE] = @selected_bg_color
+
+	engine "murrine" {
+		trough_shades = { 4.97, 4.97 }
+		trough_border_shades = { 5.0, 5.0 }
+	}
+}
+
+widget "whiskermenu-window*" style "whiskermenu"
+widget "*whisker*GtkVScrollbar" style "whiskermenu-scrollbar"
 
 # Gtk2 Open-File Dialog
 
